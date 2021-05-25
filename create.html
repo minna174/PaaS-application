@@ -1,0 +1,17 @@
+<html>
+<body>
+<form method='get' action="/">
+	<input type='submit' name='button' value='Back'/>
+</form>
+<form method="post" action="/create">
+  <h4>Electric Vehicle</h4>
+    <b>Name</b>:<br><input type="text" name="name" required/><br/>
+    <b>Manufacturer</b>:<br><input type="text" name="manufacturer" required/><br/>
+    <b>Year</b>:<br><input type="number" name="year" required /><br/>
+    <b>Battery Size</b>:<br><input type="number" required step="0.001" name="batterySize"/><br/>
+    <b>WLTP Range</b>:<br><input type="number" required step="0.001" name="WLTPRange" /><br/>
+    <b>Cost</b>:<br><input type="number" required step="0.001" name="cost"/><br/>
+    <b>Power</b>:<br><input type="number" required step="0.001" name="power"/><br/><br/>
+    <input type="submit" value="Create" name="button"/>
+</form>
+</body>

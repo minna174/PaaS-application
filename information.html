@@ -1,0 +1,88 @@
+<html>
+<body>
+
+	<h4>View/Edit/Delete</h4>
+
+	<form method='post' action='/information'>
+		<table border="1" style="border-collapse: collapse;">
+		<tr>
+	        <th>Ev name</th>
+	        <th>Ev manufacturer</th>
+	        <th>Ev year</th>
+	        <th>Ev battery size</th>
+	        <th>WLTPRange</th>
+	        <th>Ev cost</th>
+	        <th>Ev power</th>
+      </tr>
+      {%for i in ele%}
+ 	<tr>
+			<td><input type='text' required name="name" value="{{i.name}}"></td>
+			<td><input type='text' required name="manufacturer" value="{{i.manufacturer}}"></td>
+			<td><input type='number' step="0.001" required name="year" value="{{i.year}}"></td>
+			<td><input type='number' step="0.001" required name="batterySize" value="{{i.batterySize}}"></td>
+			<td><input type='number' step="0.001" required name="WLTPRange" value="{{i.WLTPRange}}"></td>
+			<td><input type='number' step="0.001" required name="cost" value="{{i.cost}}"></td>
+			<td><input type='number' step="0.001" required name="power" value="{{i.power}}"></td>
+		</tr>
+	{%endfor%}
+
+		<input type="hidden" name='_key_' value="{{_key}}"/>
+	</table>
+	<table>
+		{%if showButtons%}
+		<tr><td><input type="submit" name="button" value="Edit Ev"/></td>
+			<td><input type="submit" name="button" value="Delete Ev"/></td>
+			{%endif%}
+			<td><input type='submit' name='button' value='Back'/></td></tr>
+		</table>
+
+		</form>
+	</table>
+	<br/><br/>
+
+	<form method="post" action="/information">
+		<input type='hidden' name="name" value="{{ele.name}}"/>
+		<input type='hidden' name="manufacturer" value="{{ele.manufacturer}}"/>
+		<input type='hidden' name="year" value="{{ele.year}}"/>
+		<input type='hidden' name="batterySize" value="{{ele.batterySize}}"/>
+		<input type='hidden' name="range" value="{{ele.WLTPRange}}"/>
+		<input type='hidden' name="cost" value="{{ele.cost}}"/>
+		<input type='hidden' name="power" value="{{ele.power}}"/>
+		<input type="hidden" name='_key_' value="{{_key}}"/>
+
+		<br/>
+		User reviews for this EV (more recent first listed):
+		<table>
+		{%if reviews%}
+		{%for i in reviews%}
+		<tr><td><b><i>{{i}}</i></b></td></tr>
+		{%endfor%}
+		{%else%}
+		<tr><td>Nothing found</td></tr>
+		{%endif%}
+		</table>
+		<br/><br/>
+		{%if showButtons%}
+		<table>
+			<tr><td>Add review:</td></tr>
+			<tr><td><input type='text' required="true" placeholder="review" name='review'/></td></tr>
+		</table>
+		{%endif%}
+		<br/>
+		Average user score for this EV is
+		{%for i in ele%}
+		<b><i>{{score}}</i></b> out of 10
+		{%endfor%}
+		<br/><br/>
+
+		{%if showButtons%}
+		<table>
+			<tr><td>Add rating:</td></tr>
+			<tr><td><input type='number' required="true" min="1" max="10" placeholder="rating" name='rating'/></td></tr>
+			<tr><td></td></tr>
+			<tr><td><input type='submit' name='button' value='Add review and score'/></td></tr>
+		</table>
+		{%endif%}
+	</form>
+</body>
+</html>

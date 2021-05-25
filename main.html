@@ -1,0 +1,76 @@
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title> Electric Vehicle</title>
+</head>
+<body>
+  {% if user %}
+  <p>{{welcome}} {{user.email()}} welcome to the application </p>
+  <!-- <form>
+    <input type="button" onclick="create.html" value="CREATE"/>
+  </form> -->
+  <!--<a href="create.html" >   Create </a>-->
+  {% else %}
+  <p>Hello guest welcome to the application</p>
+  {% endif %}
+  <p> you can {{url_string}} <a href='{{url}}'> here</a></p>
+
+    <form method="post" action='/'>
+    {%if user%}
+      <input type='submit' name='button' value='Create Ev'/>
+    {%endif%}
+    <input type='submit' name='button' value='Compare Ev'/>
+    </form>
+
+
+<table border="1" style="border-collapse: collapse;">
+  <form method='get' action='/'>
+    <input type="submit" value="Query ev" name="button">
+    <br/><br/>
+      <tr>
+        <th>Name</th>
+        <th>Manufacturer</th>
+        <th>Year</th>
+        <th>Battery size</th>
+        <th>WLTP Range</th>
+        <th>Cost</th>
+        <th>Power</th>
+      </tr>
+    <tr>
+      <td><input type='text' name="name"></td>
+      <td><input type='text' name="manufacturer"></td>
+      <td>min<input type='text' name="minyear">max<input type='text' name="maxyear"></td>
+      <td>min<input type='text' name="minbatterySize">max<input type='text' name="maxbatterySize"></td>
+      <td>min<input type='text' name="minWLTPRange">max<input type='text' name="maxWLTPRange"></td>
+      <td>min<input type='text' name="mincost">max<input type='text' name="maxcost"></td>
+      <td>min<input type='text' name="minpower">max<input type='text' name="maxpower"></td>
+  </form>
+  </table>
+
+  <br/><br/><br/>
+  <table border="1" style="border-collapse: collapse;">
+  {%if ele%}
+    <tr>
+      <th>Name</th>
+      <th>Manufacturer</th>
+      <th>Year</th>
+      <th>Battery size</th>
+      <th>WLTP Range</th>
+      <th>Cost</th>
+      <th>Power</th>
+    </tr>
+    {%for i in ele%}
+    <tr>
+      <td><a href="/information?name={{i.name}}&manufacturer={{i.manufacturer}}&year={{i.year}}">{{i.name}}</a></td>
+      <td><a href="/information?name={{i.name}}&manufacturer={{i.manufacturer}}&year={{i.year}}">{{i.manufacturer}}</a></td>
+      <td><a href="/information?name={{i.name}}&manufacturer={{i.manufacturer}}&year={{i.year}}">{{i.year}}</td>
+      <td><a href="/information?name={{i.name}}&manufacturer={{i.manufacturer}}&year={{i.year}}">{{i.batterySize}}</td>
+      <td><a href="/information?name={{i.name}}&manufacturer={{i.manufacturer}}&year={{i.year}}">{{i.WLTPRange}}</td>
+      <td><a href="/information?name={{i.name}}&manufacturer={{i.manufacturer}}&year={{i.year}}">{{i.cost}}</td>
+      <td><a href="/information?name={{i.name}}&manufacturer={{i.manufacturer}}&year={{i.year}}">{{i.power}}</td>
+    </tr>
+    {%endfor%}
+  {%endif%}
+  </table>
+</body>
+</html>

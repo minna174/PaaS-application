@@ -1,0 +1,107 @@
+<html>
+<body>
+	<form method='post' action='/compare'>
+
+		{%if ele%}
+		{%if keysCheckbox%}
+		{%for i in ele%}
+			<input type="checkbox" name="c" value="{{keysCheckbox[loop.index - 1]}}">Name: {{i.name}} Manufacturer: {{i.manufacturer}} Year: {{i.year}}<br/>
+		{%endfor%}
+		<input type="submit" name='button' value='Compare'>
+		{%endif%}
+		{%else%}
+		Click back to add a new EV
+		{%endif%}
+		<input type="submit" name='button' value='Back'>
+	</form>
+
+	{%if ele2%}
+	<table border=1>
+		<tr>
+			<td>Ev name</td>
+			{%for j in ele2%}
+				<td><a href="/information?name={{j.name}}&manufacturer={{j.manufacturer}}&year={{j.year}}">{{j.name}}</a></td>
+			{%endfor%}
+		</tr>
+		<tr>
+			<td>Ev manufacturer</td>
+			{%for j in ele2%}
+				<td>{{j.manufacturer}}</td>
+			{%endfor%}
+		</tr>
+		<tr>
+			<td>Ev year</td>
+			{%for j in ele2%}
+			{%if j.year == low[0]%}
+			<td bgcolor="#FF0000">{{j.year}}</td>
+			{%elif j.year == high[0]%}
+			<td bgcolor="#00FF00">{{j.year}}</td>
+			{%else%}
+			<td>{{j.year}}</td>
+			{%endif%}
+			{%endfor%}
+		</tr>
+		<tr>
+			<td>Ev battery size</td>
+			{%for j in ele2%}
+			{%if j.batterySize == low[1]%}
+			<td bgcolor="#FF0000">{{j.batterySize}}</td>
+			{%elif j.batterySize == high[1]%}
+			<td bgcolor="#00FF00">{{j.batterySize}}</td>
+			{%else%}
+			<td>{{j.batterySize}}</td>
+			{%endif%}
+			{%endfor%}
+		</tr>
+		<tr>
+			<td>WLTPRange</td>
+			{%for j in ele2%}
+			{%if j.WLTPRange == low[2]%}
+			<td bgcolor="#FF0000">{{j.WLTPRange}}</td>
+			{%elif j.WLTPRange == high[2]%}
+			<td bgcolor="#00FF00">{{j.WLTPRange}}</td>
+			{%else%}
+			<td>{{j.WLTPRange}}</td>
+			{%endif%}
+			{%endfor%}
+		</tr>
+		<tr>
+			<td>Ev cost</td>
+			{%for j in ele2%}
+			{%if j.cost == low[3]%}
+			<td bgcolor="#00FF00">{{j.cost}}</td>
+			{%elif j.cost == high[3]%}
+			<td bgcolor="#FF0000">{{j.cost}}</td>
+			{%else%}
+			<td>{{j.cost}}</td>
+			{%endif%}
+			{%endfor%}
+		</tr>
+		<tr>
+			<td>Ev power</td>
+			{%for j in ele2%}
+			{%if j.power == low[4]%}
+			<td bgcolor="#FF0000">{{j.power}}</td>
+			{%elif j.power == high[4]%}
+			<td bgcolor="#00FF00">{{j.power}}</td>
+			{%else%}
+			<td>{{j.power}}</td>
+			{%endif%}
+			{%endfor%}
+		</tr>
+		<tr>
+			<td>Avg. score</td>
+			{%for j in ele2%}
+			{%if score[loop.index-1] == low[5]%}
+			<td bgcolor="#FF0000">{{score[loop.index-1]}}</td>
+			{%elif score[loop.index-1] == high[5]%}
+			<td bgcolor="#00FF00">{{score[loop.index-1]}}</td>
+			{%else%}
+			<td>{{score[loop.index-1]}}</td>
+			{%endif%}
+			{%endfor%}
+		</tr>
+	</table>
+	{%endif%}
+</body>
+</html>
